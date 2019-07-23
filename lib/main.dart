@@ -1,106 +1,41 @@
-import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
+import 'package:flutter/cupertino.dart';
+import './poetry/poetry.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-        title: 'Welcome to Flutter',
-        theme: new ThemeData(
-          primaryColor: Colors.white,
-        ),
-        home: new RandomWords());
-  }
+class MyApp extends StatefulWidget {
+  MyApp({Key key}) : super(key: key);
+
+  _MyAppState createState() => _MyAppState();
 }
 
-class RandomWords extends StatefulWidget {
-  @override
-  createState() => new RandomWordsState();
-}
-
-class RandomWordsState extends State<RandomWords> {
-  final _suggestions = <WordPair>[];
-  final _biggerFont = const TextStyle(fontSize: 12.0, color: Colors.red);
-  final _saved = new Set<WordPair>();
-
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Startup Name Generator'),
-        actions: <Widget>[
-          new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved)
-        ],
-      ),
-      body: _buildSuggestions(),
-    );
-  }
-
-  void _pushSaved() {
-    Navigator.of(context).push(
-      new MaterialPageRoute(
-        builder: (context) {
-          final tiles = _saved.map(
-            (pair) {
-              return new ListTile(
-                title: new Text(
-                  pair.asPascalCase,
-                  style: _biggerFont,
-                ),
-              );
-            },
-          );
-          final divided = ListTile.divideTiles(
-            context: context,
-            tiles: tiles,
-          ).toList();
-          return new Scaffold(
-            appBar: new AppBar(
-              title: new Text('Saved Suggestions'),
-            ),
-            body: new ListView(children: divided),
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _buildSuggestions() {
-    return new ListView.builder(
-      padding: const EdgeInsets.all(1.6),
-      itemBuilder: (context, i) {
-        if (i.isOdd) return new Divider();
-        final index = i ~/ 2;
-        if (index >= _suggestions.length) {
-          _suggestions.addAll(generateWordPairs().take(10));
-        }
-        return _buildRow(_suggestions[index]);
-      },
-    );
-  }
-
-  Widget _buildRow(WordPair pair) {
-    final alreadySaved = _saved.contains(pair);
-
-    return new ListTile(
-        title: new Text(
-          pair.asPascalCase,
-          style: _biggerFont,
-        ),
-        trailing: new Icon(
-          alreadySaved ? Icons.favorite : Icons.favorite_border,
-          color: alreadySaved ? Colors.red : null,
-        ),
-        onTap: () {
-          setState(() {
-            if (alreadySaved) {
-              _saved.remove(pair);
-            } else {
-              _saved.add(pair);
+    return CupertinoApp(
+      title: 'fdemo',
+      theme: new CupertinoThemeData(
+        primaryColor: CupertinoColors.darkBackgroundGray),
+      home: new CupertinoTabScaffold(
+        tabBar: new CupertinoTabBar(
+          items: [new BottomNavigationBarItem(title: new Text('诗歌'), icon: new Text('诗歌')),
+                  new BottomNavigationBarItem(title: new Text('fdemo'), icon: new Text('icon'))],
+          currentIndex: 0,
+          border: Border.all(width: 0, color: CupertinoColors.darkBackgroundGray),
+          ),
+          tabBuilder: (BuildContext context, int index) {
+            if (index == 0) {
+              return new Poetry();
             }
-          });
-        });
+            return CupertinoTabView(
+              builder: (BuildContext context) {
+                return new CupertinoPageScaffold(
+                  child: Text('Fdemo'),
+                );
+              },
+            );
+          },
+        ),
+    );
   }
 }
