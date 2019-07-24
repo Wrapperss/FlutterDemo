@@ -10,14 +10,17 @@ class Poetry extends StatefulWidget {
 }
 
 class _PoetryState extends State<Poetry> {
-  var poetry = '诗歌';
+  var origin = 'falflajf';
+  var content = 'fafaf';
+  var author = 'fafafa';
   var isNewData = false;
 
   void getPoetry() async {
     try {
       Response response = await Dio().get('https://api.gushi.ci/all.json');
-      print(response);
-      poetry = response.data['content'];
+      content = response.data['content'];
+      origin = response.data['origin'];
+      author = response.data['author'];
       setState(() {
         isNewData = true;
       });
@@ -61,14 +64,31 @@ class _PoetryState extends State<Poetry> {
       onTap: _handleTap,
       child: Container(
         child: CupertinoPageScaffold(
-          navigationBar: new CupertinoNavigationBar(
-            middle: new Text('诗歌'),
+          navigationBar: CupertinoNavigationBar(
+            middle: Text('诗歌'),
           ),
-          child: new Center(
-            child: new Text(
-              poetry,
-              style: new TextStyle(color: Colors.white),
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    origin,
+                    style: TextStyle(color: Colors.black, fontSize: 26),
+                  ),
+                  Text(
+                    author,
+                    style: TextStyle(color: Colors.black, fontSize: 20),
+                  ),
+                  Text(
+                    content,
+                    style: TextStyle(color: Colors.black, fontSize: 20),
+                  ),
+                ],
+              ),
+            ],
           ),
           backgroundColor: randomColor(),
         ),
@@ -84,5 +104,6 @@ class _PoetryState extends State<Poetry> {
 }
 
 Color randomColor() {
-    return Color.fromARGB(255, Random().nextInt(256)+0, Random().nextInt(256)+0, Random().nextInt(256)+0);
+  return Color.fromARGB(255, Random().nextInt(256) + 0,
+      Random().nextInt(256) + 0, Random().nextInt(256) + 0);
 }
