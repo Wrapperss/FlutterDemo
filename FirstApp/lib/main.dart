@@ -1,5 +1,8 @@
-import 'package:FirstApp/NewRoute.dart';
 import 'package:flutter/material.dart';
+import 'Route/EchoRoute.dart';
+import 'Route/NewRoute.dart';
+import 'Route/RouterTestRoute.dart';
+import 'package:english_words/english_words.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +18,18 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.yellow,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: {
+        "/": (context) => MyHomePage(title: "Flutter Demo Home Page"), // 注册首页路由
+        "new_page": (context) => NewRoute(),
+        "echo_route": (context) => EchoRoute(),
+      },
+      onGenerateRoute: (RouteSettings settings) {
+        print("做一些全局的路由跳转前置处理逻辑");
+        return MaterialPageRoute(builder: (context) {
+          String routeName = settings.name;
+        });
+      },
+      // home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -40,13 +54,14 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _openNewPage() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) {
-              return NewRoute();
-            },
-            fullscreenDialog: true));
+    // Navigator.push(
+    //     context,
+    //     MaterialPageRoute(
+    //         builder: (context) {
+    //           return NewRoute();
+    //         },
+    //         fullscreenDialog: true));
+    Navigator.pushNamed(context, "new_page");
   }
 
   @override
@@ -59,6 +74,10 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text(
+              WordPair.random().toString(),
+              style: TextStyle(fontSize: 20, color: Colors.red),
+            ),
             Text(
               'You have pushed the button this many times:',
             ),
@@ -74,7 +93,17 @@ class _MyHomePageState extends State<MyHomePage> {
               textColor: Colors.red,
               color: Colors.yellow,
               onPressed: _openNewPage,
-            )
+            ),
+            FlatButton(
+              child: Text("echo_route"),
+              color: Colors.blue,
+              onPressed: () => {
+                Navigator.pushNamed(context, "echo_route",
+                    arguments: {"title": "EchoRoute", "body": "传递的参数"})
+              },
+            ),
+            RouterTestRoute(),
+            
           ],
         ),
       ),
