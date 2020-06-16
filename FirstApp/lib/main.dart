@@ -4,6 +4,8 @@ import 'Route/NewRoute.dart';
 import 'Route/RouterTestRoute.dart';
 import 'package:english_words/english_words.dart';
 
+import 'Widget/CounterWidget.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -22,6 +24,7 @@ class MyApp extends StatelessWidget {
         "/": (context) => MyHomePage(title: "Flutter Demo Home Page"), // 注册首页路由
         "new_page": (context) => NewRoute(),
         "echo_route": (context) => EchoRoute(),
+        "counter": (context) => CounterWidget(),
       },
       onGenerateRoute: (RouteSettings settings) {
         print("做一些全局的路由跳转前置处理逻辑");
@@ -103,7 +106,9 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             RouterTestRoute(),
-            
+            FlatButton(child: Text("CounterWidget"), onPressed: () => {
+              Navigator.pushNamed(context, "counter")
+            },)
           ],
         ),
       ),
