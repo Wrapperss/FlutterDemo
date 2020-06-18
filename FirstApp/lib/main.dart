@@ -81,6 +81,12 @@ class _MyHomePageState extends State<MyHomePage> {
               WordPair.random().toString(),
               style: TextStyle(fontSize: 20, color: Colors.red),
             ),
+            Text.rich(TextSpan(children: [
+              TextSpan(text: "Home: "),
+              TextSpan(
+                  text: "https://flutterchina.club",
+                  style: TextStyle(color: Colors.blue)),
+            ])),
             Text(
               'You have pushed the button this many times:',
             ),
@@ -106,9 +112,10 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             RouterTestRoute(),
-            FlatButton(child: Text("CounterWidget"), onPressed: () => {
-              Navigator.pushNamed(context, "counter")
-            },)
+            FlatButton(
+              child: Text("CounterWidget"),
+              onPressed: () => {Navigator.pushNamed(context, "counter")},
+            )
           ],
         ),
       ),
