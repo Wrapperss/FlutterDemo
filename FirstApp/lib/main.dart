@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'Components/FormRoute.dart';
+import 'Components/InputRoute.dart';
+import 'Components/SwitchAndCheckBoxTestRoute.dart';
 import 'Route/EchoRoute.dart';
 import 'Route/NewRoute.dart';
 import 'Route/RouterTestRoute.dart';
 import 'package:english_words/english_words.dart';
-
 import 'Widget/CounterWidget.dart';
 
 void main() {
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.yellow,
+        primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
@@ -25,6 +27,9 @@ class MyApp extends StatelessWidget {
         "new_page": (context) => NewRoute(),
         "echo_route": (context) => EchoRoute(),
         "counter": (context) => CounterWidget(),
+        "switchAndCheckBox": (context) => SwitchAndCheckBoxTestRoute(),
+        "InputRoute": (context) => InputRoute(),
+        "FormRoute": (context) => FormRoute(),
       },
       onGenerateRoute: (RouteSettings settings) {
         print("做一些全局的路由跳转前置处理逻辑");
@@ -115,6 +120,50 @@ class _MyHomePageState extends State<MyHomePage> {
             FlatButton(
               child: Text("CounterWidget"),
               onPressed: () => {Navigator.pushNamed(context, "counter")},
+            ),
+            // Image(
+            //   image: AssetImage("images/icon_alipay_recepit_alert@3x.png"),
+            //   width: 100,
+            // ),
+            // Image(
+            //   image: NetworkImage(
+            //       "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=798385081,3821355100&fm=26&gp=0.jpg"),
+            //   width: 100,
+            // ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: <Widget>[
+            //     Icon(
+            //       Icons.accessible,
+            //       color: Colors.green,
+            //     ),
+            //     Icon(
+            //       Icons.error,
+            //       color: Colors.green,
+            //     ),
+            //     Icon(
+            //       Icons.fingerprint,
+            //       color: Colors.green,
+            //     ),
+            //   ],
+            // ),
+            RaisedButton(
+              child: Text(
+                "Switch & CheckBox",
+                style: TextStyle(color: Colors.yellow),
+              ),
+              color: Colors.red,
+              onPressed: () {
+                Navigator.pushNamed(context, "switchAndCheckBox");
+              },
+            ),
+            RaisedButton(
+              child: Text("Input Route"),
+              onPressed: () => Navigator.pushNamed(context, "InputRoute"),
+            ),
+            RaisedButton(
+              child: Text("Form Route"),
+              onPressed: () => Navigator.pushNamed(context, "FormRoute"),
             )
           ],
         ),
