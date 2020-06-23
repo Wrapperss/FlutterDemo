@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Components/Arrange/ArrangeRoute.dart';
+import 'Components/Container/ContainerRoute.dart';
 import 'Components/FormRoute.dart';
 import 'Components/InputRoute.dart';
 import 'Components/SwitchAndCheckBoxTestRoute.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         "InputRoute": (context) => InputRoute(),
         "FormRoute": (context) => FormRoute(),
         "ArrangeRoute": (context) => ArrangeRoute(),
+        "ContainerRoute": (context) => ContainerRoute(),
       },
       onGenerateRoute: (RouteSettings settings) {
         print("做一些全局的路由跳转前置处理逻辑");
@@ -171,21 +173,25 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text("ArrangeRoute"),
               onPressed: () => Navigator.pushNamed(context, "ArrangeRoute"),
             ),
-            SizedBox(
-              height: 3,
-              child: LinearProgressIndicator(
-                backgroundColor: Colors.grey[200],
-                valueColor: AlwaysStoppedAnimation(Colors.blue),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-              width: 20,
-              child: CircularProgressIndicator(
-                backgroundColor: Colors.grey[200],
-                valueColor: AlwaysStoppedAnimation(Colors.blue),
-              ),
+            RaisedButton(
+              child: Text("Container Route"),
+              onPressed: () => Navigator.pushNamed(context, "ContainerRoute"),
             )
+            // SizedBox(
+            //   height: 3,
+            //   child: LinearProgressIndicator(
+            //     backgroundColor: Colors.grey[200],
+            //     valueColor: AlwaysStoppedAnimation(Colors.blue),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            //   width: 20,
+            //   child: CircularProgressIndicator(
+            //     backgroundColor: Colors.grey[200],
+            //     valueColor: AlwaysStoppedAnimation(Colors.blue),
+            //   ),
+            // )
           ],
         ),
       ),

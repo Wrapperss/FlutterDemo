@@ -8,7 +8,7 @@ class AlignArrange extends StatelessWidget {
       child: Align(
         widthFactor: 2,
         heightFactor: 2,
-        alignment: Alignment.bottomCenter,
+        alignment: Alignment(1, 1),
         child: FlutterLogo(
           size: 60,
         ),
