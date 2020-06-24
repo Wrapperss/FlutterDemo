@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 class BoxTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // ConstrainedBox
     Widget redBox = DecoratedBox(
       decoration: BoxDecoration(color: Colors.red),
     );
+
+    // ConstrainedBox
     Widget constrainedBox = ConstrainedBox(
       constraints: BoxConstraints(minWidth: double.infinity, minHeight: 50),
       child: Container(
@@ -15,7 +16,8 @@ class BoxTest extends StatelessWidget {
       ),
     );
 
+    Widget sizeBox = SizedBox(width: 80, height: 80, child: redBox);
 
-    return constrainedBox;
+    return sizeBox;
   }
 }
