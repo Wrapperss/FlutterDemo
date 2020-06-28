@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'Components/Arrange/ArrangeRoute.dart';
+import 'Components/ClipRoute.dart';
 import 'Components/Container/ContainerRoute.dart';
 import 'Components/FormRoute.dart';
+import 'Components/Grid/GridRoute.dart';
 import 'Components/InputRoute.dart';
+import 'Components/List/ListViewRoute.dart';
 import 'Components/SwitchAndCheckBoxTestRoute.dart';
 import 'Route/EchoRoute.dart';
 import 'Route/NewRoute.dart';
@@ -34,6 +37,9 @@ class MyApp extends StatelessWidget {
         "FormRoute": (context) => FormRoute(),
         "ArrangeRoute": (context) => ArrangeRoute(),
         "ContainerRoute": (context) => ContainerRoute(),
+        "ClipRoute": (context) => ClipRoute(),
+        "ListViewRoute": (context) => ListViewRoute(),
+        "GridRoute": (context) => GridRoute(),
       },
       onGenerateRoute: (RouteSettings settings) {
         print("做一些全局的路由跳转前置处理逻辑");
@@ -82,117 +88,132 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              WordPair.random().toString(),
-              style: TextStyle(fontSize: 20, color: Colors.red),
-            ),
-            Text.rich(TextSpan(children: [
-              TextSpan(text: "Home: "),
-              TextSpan(
-                  text: "https://flutterchina.club",
-                  style: TextStyle(color: Colors.blue)),
-            ])),
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            FlatButton(
-              child: Text(
-                "open new route",
-                style: TextStyle(fontSize: 20),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                WordPair.random().toString(),
+                style: TextStyle(fontSize: 20, color: Colors.red),
               ),
-              textColor: Colors.red,
-              color: Colors.yellow,
-              onPressed: _openNewPage,
-            ),
-            FlatButton(
-              child: Text("echo_route"),
-              color: Colors.blue,
-              onPressed: () => {
-                Navigator.pushNamed(context, "echo_route",
-                    arguments: {"title": "EchoRoute", "body": "传递的参数"})
-              },
-            ),
-            RouterTestRoute(),
-            FlatButton(
-              child: Text("CounterWidget"),
-              onPressed: () => {Navigator.pushNamed(context, "counter")},
-            ),
-            // Image(
-            //   image: AssetImage("images/icon_alipay_recepit_alert@3x.png"),
-            //   width: 100,
-            // ),
-            // Image(
-            //   image: NetworkImage(
-            //       "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=798385081,3821355100&fm=26&gp=0.jpg"),
-            //   width: 100,
-            // ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: <Widget>[
-            //     Icon(
-            //       Icons.accessible,
-            //       color: Colors.green,
-            //     ),
-            //     Icon(
-            //       Icons.error,
-            //       color: Colors.green,
-            //     ),
-            //     Icon(
-            //       Icons.fingerprint,
-            //       color: Colors.green,
-            //     ),
-            //   ],
-            // ),
-            RaisedButton(
-              child: Text(
-                "Switch & CheckBox",
-                style: TextStyle(color: Colors.yellow),
+              Text.rich(TextSpan(children: [
+                TextSpan(text: "Home: "),
+                TextSpan(
+                    text: "https://flutterchina.club",
+                    style: TextStyle(color: Colors.blue)),
+              ])),
+              Text(
+                'You have pushed the button this many times:',
               ),
-              color: Colors.red,
-              onPressed: () {
-                Navigator.pushNamed(context, "switchAndCheckBox");
-              },
-            ),
-            RaisedButton(
-              child: Text("Input Route"),
-              onPressed: () => Navigator.pushNamed(context, "InputRoute"),
-            ),
-            RaisedButton(
-              child: Text("Form Route"),
-              onPressed: () => Navigator.pushNamed(context, "FormRoute"),
-            ),
-            RaisedButton(
-              child: Text("ArrangeRoute"),
-              onPressed: () => Navigator.pushNamed(context, "ArrangeRoute"),
-            ),
-            RaisedButton(
-              child: Text("Container Route"),
-              onPressed: () => Navigator.pushNamed(context, "ContainerRoute"),
-            )
-            // SizedBox(
-            //   height: 3,
-            //   child: LinearProgressIndicator(
-            //     backgroundColor: Colors.grey[200],
-            //     valueColor: AlwaysStoppedAnimation(Colors.blue),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 20,
-            //   width: 20,
-            //   child: CircularProgressIndicator(
-            //     backgroundColor: Colors.grey[200],
-            //     valueColor: AlwaysStoppedAnimation(Colors.blue),
-            //   ),
-            // )
-          ],
+              Text(
+                '$_counter',
+                style: Theme.of(context).textTheme.headline4,
+              ),
+              FlatButton(
+                child: Text(
+                  "open new route",
+                  style: TextStyle(fontSize: 20),
+                ),
+                textColor: Colors.red,
+                color: Colors.yellow,
+                onPressed: _openNewPage,
+              ),
+              FlatButton(
+                child: Text("echo_route"),
+                color: Colors.blue,
+                onPressed: () => {
+                  Navigator.pushNamed(context, "echo_route",
+                      arguments: {"title": "EchoRoute", "body": "传递的参数"})
+                },
+              ),
+              RouterTestRoute(),
+              FlatButton(
+                child: Text("CounterWidget"),
+                onPressed: () => {Navigator.pushNamed(context, "counter")},
+              ),
+              Image(
+                image: AssetImage("images/icon_alipay_recepit_alert@3x.png"),
+                width: 100,
+              ),
+              Image(
+                image: NetworkImage(
+                    "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=798385081,3821355100&fm=26&gp=0.jpg"),
+                width: 100,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(
+                    Icons.accessible,
+                    color: Colors.green,
+                  ),
+                  Icon(
+                    Icons.error,
+                    color: Colors.green,
+                  ),
+                  Icon(
+                    Icons.fingerprint,
+                    color: Colors.green,
+                  ),
+                ],
+              ),
+              RaisedButton(
+                child: Text(
+                  "Switch & CheckBox",
+                  style: TextStyle(color: Colors.yellow),
+                ),
+                color: Colors.red,
+                onPressed: () {
+                  Navigator.pushNamed(context, "switchAndCheckBox");
+                },
+              ),
+              RaisedButton(
+                child: Text("Input Route"),
+                onPressed: () => Navigator.pushNamed(context, "InputRoute"),
+              ),
+              RaisedButton(
+                child: Text("Form Route"),
+                onPressed: () => Navigator.pushNamed(context, "FormRoute"),
+              ),
+              RaisedButton(
+                child: Text("ArrangeRoute"),
+                onPressed: () => Navigator.pushNamed(context, "ArrangeRoute"),
+              ),
+              RaisedButton(
+                child: Text("Container Route"),
+                onPressed: () => Navigator.pushNamed(context, "ContainerRoute"),
+              ),
+              RaisedButton(
+                child: Text("Clip Route"),
+                onPressed: () => Navigator.pushNamed(context, "ClipRoute"),
+              ),
+              SizedBox(
+                height: 3,
+                child: LinearProgressIndicator(
+                  backgroundColor: Colors.grey[200],
+                  valueColor: AlwaysStoppedAnimation(Colors.blue),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+                width: 20,
+                child: CircularProgressIndicator(
+                  backgroundColor: Colors.grey[200],
+                  valueColor: AlwaysStoppedAnimation(Colors.blue),
+                ),
+              ),
+              RaisedButton(
+                child: Text("List View"),
+                onPressed: () => Navigator.pushNamed(context, "ListViewRoute"),
+              ),
+              RaisedButton(
+                child: Text("Grid View"),
+                onPressed: () => Navigator.pushNamed(context, "GridRoute"),
+              )
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

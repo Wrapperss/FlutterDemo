@@ -49,6 +49,7 @@ flutter:
   assets:
     - images/icon_alipay_recepit_alert@3x.png
     - images/icon_alipay_recepit_alert@2x.png
+    - images/avatar.jpeg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
