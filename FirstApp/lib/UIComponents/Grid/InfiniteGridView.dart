@@ -1,3 +1,10 @@
+/*
+ * @Author: Wrappers 
+ * @Date: 2020-06-29 15:57:41 
+ * @Last Modified by:   Wrappers 
+ * @Last Modified time: 2020-06-29 15:57:41 
+ */
+
 import 'package:flutter/material.dart';
 
 class InfiniteGridView extends StatefulWidget {
@@ -10,7 +17,7 @@ class _InfiniteGridViewState extends State<InfiniteGridView> {
 
   @override
   void initState() {
-    // 初始化数据
+    super.initState();
     _retrieveIcons();
   }
 

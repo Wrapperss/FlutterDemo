@@ -1,16 +1,24 @@
+/*
+ * @Author: Wrappers 
+ * @Date: 2020-06-29 15:55:21 
+ * @Last Modified by: Wrappers
+ * @Last Modified time: 2020-06-29 16:01:33
+ */
+
 import 'package:flutter/material.dart';
-import 'Components/Arrange/ArrangeRoute.dart';
-import 'Components/ClipRoute.dart';
-import 'Components/Container/ContainerRoute.dart';
-import 'Components/FormRoute.dart';
-import 'Components/Grid/GridRoute.dart';
-import 'Components/InputRoute.dart';
-import 'Components/List/ListViewRoute.dart';
-import 'Components/SwitchAndCheckBoxTestRoute.dart';
+import 'FunctionComponents/FunctionComponentsRoute.dart';
+import 'UIComponents/Arrange/ArrangeRoute.dart';
+import 'UIComponents/ClipRoute.dart';
+import 'UIComponents/Container/ContainerRoute.dart';
+import 'UIComponents/FormRoute.dart';
+import 'UIComponents/Grid/GridRoute.dart';
+import 'UIComponents/InputRoute.dart';
+import 'UIComponents/List/ListViewRoute.dart';
+import 'UIComponents/List/ListViewScrollRoute.dart';
+import 'UIComponents/SwitchAndCheckBoxTestRoute.dart';
 import 'Route/EchoRoute.dart';
 import 'Route/NewRoute.dart';
-import 'Route/RouterTestRoute.dart';
-import 'package:english_words/english_words.dart';
+import 'UIComponents/UIComponentsRoute.dart';
 import 'Widget/CounterWidget.dart';
 
 void main() {
@@ -29,6 +37,8 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         "/": (context) => MyHomePage(title: "Flutter Demo Home Page"), // 注册首页路由
+
+        "UIComponentsRoute": (context) => UIComponentsRoute(),
         "new_page": (context) => NewRoute(),
         "echo_route": (context) => EchoRoute(),
         "counter": (context) => CounterWidget(),
@@ -40,6 +50,9 @@ class MyApp extends StatelessWidget {
         "ClipRoute": (context) => ClipRoute(),
         "ListViewRoute": (context) => ListViewRoute(),
         "GridRoute": (context) => GridRoute(),
+        "ListViewScrollRoute": (context) => ListViewScrollRoute(),
+
+        "FunctionComponentsRoute": (context) => FunctionComponentsRoute(),
       },
       onGenerateRoute: (RouteSettings settings) {
         print("做一些全局的路由跳转前置处理逻辑");
@@ -62,28 +75,28 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 10;
-
-  void _incrementCounter() {
-    setState(() {
-      // _counter++;
-      _counter = _counter + 10;
-    });
-  }
-
-  void _openNewPage() {
-    // Navigator.push(
-    //     context,
-    //     MaterialPageRoute(
-    //         builder: (context) {
-    //           return NewRoute();
-    //         },
-    //         fullscreenDialog: true));
-    Navigator.pushNamed(context, "new_page");
-  }
-
   @override
   Widget build(BuildContext context) {
+    RaisedButton uiButton = RaisedButton(
+      child: Text(
+        "UI Components Route",
+        style: TextStyle(color: Colors.red, fontSize: 20),
+      ),
+      color: Colors.yellow,
+      clipBehavior: Clip.antiAlias,
+      onPressed: () => Navigator.pushNamed(context, "UIComponentsRoute"),
+    );
+
+    RaisedButton functionButton = RaisedButton(
+      child: Text(
+        "Function Components Route",
+        style: TextStyle(color: Colors.blue, fontSize: 20),
+      ),
+      color: Colors.red,
+      clipBehavior: Clip.antiAlias,
+      onPressed: () => Navigator.pushNamed(context, "FunctionComponentsRoute"),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -93,133 +106,9 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                WordPair.random().toString(),
-                style: TextStyle(fontSize: 20, color: Colors.red),
-              ),
-              Text.rich(TextSpan(children: [
-                TextSpan(text: "Home: "),
-                TextSpan(
-                    text: "https://flutterchina.club",
-                    style: TextStyle(color: Colors.blue)),
-              ])),
-              Text(
-                'You have pushed the button this many times:',
-              ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headline4,
-              ),
-              FlatButton(
-                child: Text(
-                  "open new route",
-                  style: TextStyle(fontSize: 20),
-                ),
-                textColor: Colors.red,
-                color: Colors.yellow,
-                onPressed: _openNewPage,
-              ),
-              FlatButton(
-                child: Text("echo_route"),
-                color: Colors.blue,
-                onPressed: () => {
-                  Navigator.pushNamed(context, "echo_route",
-                      arguments: {"title": "EchoRoute", "body": "传递的参数"})
-                },
-              ),
-              RouterTestRoute(),
-              FlatButton(
-                child: Text("CounterWidget"),
-                onPressed: () => {Navigator.pushNamed(context, "counter")},
-              ),
-              Image(
-                image: AssetImage("images/icon_alipay_recepit_alert@3x.png"),
-                width: 100,
-              ),
-              Image(
-                image: NetworkImage(
-                    "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=798385081,3821355100&fm=26&gp=0.jpg"),
-                width: 100,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Icon(
-                    Icons.accessible,
-                    color: Colors.green,
-                  ),
-                  Icon(
-                    Icons.error,
-                    color: Colors.green,
-                  ),
-                  Icon(
-                    Icons.fingerprint,
-                    color: Colors.green,
-                  ),
-                ],
-              ),
-              RaisedButton(
-                child: Text(
-                  "Switch & CheckBox",
-                  style: TextStyle(color: Colors.yellow),
-                ),
-                color: Colors.red,
-                onPressed: () {
-                  Navigator.pushNamed(context, "switchAndCheckBox");
-                },
-              ),
-              RaisedButton(
-                child: Text("Input Route"),
-                onPressed: () => Navigator.pushNamed(context, "InputRoute"),
-              ),
-              RaisedButton(
-                child: Text("Form Route"),
-                onPressed: () => Navigator.pushNamed(context, "FormRoute"),
-              ),
-              RaisedButton(
-                child: Text("ArrangeRoute"),
-                onPressed: () => Navigator.pushNamed(context, "ArrangeRoute"),
-              ),
-              RaisedButton(
-                child: Text("Container Route"),
-                onPressed: () => Navigator.pushNamed(context, "ContainerRoute"),
-              ),
-              RaisedButton(
-                child: Text("Clip Route"),
-                onPressed: () => Navigator.pushNamed(context, "ClipRoute"),
-              ),
-              SizedBox(
-                height: 3,
-                child: LinearProgressIndicator(
-                  backgroundColor: Colors.grey[200],
-                  valueColor: AlwaysStoppedAnimation(Colors.blue),
-                ),
-              ),
-              SizedBox(
-                height: 20,
-                width: 20,
-                child: CircularProgressIndicator(
-                  backgroundColor: Colors.grey[200],
-                  valueColor: AlwaysStoppedAnimation(Colors.blue),
-                ),
-              ),
-              RaisedButton(
-                child: Text("List View"),
-                onPressed: () => Navigator.pushNamed(context, "ListViewRoute"),
-              ),
-              RaisedButton(
-                child: Text("Grid View"),
-                onPressed: () => Navigator.pushNamed(context, "GridRoute"),
-              )
-            ],
+            children: <Widget>[uiButton, functionButton],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ),
     );
   }
