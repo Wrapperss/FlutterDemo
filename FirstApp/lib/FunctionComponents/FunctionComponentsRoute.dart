@@ -7,9 +7,50 @@
 
 import 'package:flutter/material.dart';
 
-class FunctionComponentsRoute extends StatelessWidget {
+class FunctionComponentsRoute extends StatefulWidget {
+  @override
+  _State createState() => _State();
+}
+
+class _State extends State<FunctionComponentsRoute> {
+  //定义一个状态，保存当前指针位置
+  PointerEvent _event;
+
+  //保存事件名
+  String _operation = "No Gesture detected!";
+
   @override
   Widget build(BuildContext context) {
+    Listener touchListener = Listener(
+      child: Container(
+        alignment: Alignment.center,
+        color: Colors.blue,
+        width: 300,
+        height: 150,
+        child: Text(_event?.toString() ?? "",
+            style: TextStyle(color: Colors.white)),
+      ),
+      onPointerDown: (event) => setState(() => _event = event),
+      onPointerMove: (PointerMoveEvent event) => setState(() => _event = event),
+      onPointerUp: (PointerUpEvent event) => setState(() => _event = event),
+    );
+
+    GestureDetector dector = GestureDetector(
+      child: Container(
+        alignment: Alignment.center,
+        color: Colors.red,
+        width: 200,
+        height: 100,
+        child: Text(
+          _operation,
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+      onTap: () => setState(() => _operation = "Tap"),
+      onDoubleTap: () => setState(() => _operation = "DoubleTap"),
+      onLongPress: () => setState(() => _operation = "LongPress"),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Function Components Route"),
@@ -17,7 +58,10 @@ class FunctionComponentsRoute extends StatelessWidget {
       body: SingleChildScrollView(
         child: Center(
           child: Column(
-            children: <Widget>[],
+            children: <Widget>[
+              touchListener,
+              dector,
+            ],
           ),
         ),
       ),
