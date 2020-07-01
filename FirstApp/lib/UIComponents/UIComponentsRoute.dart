@@ -14,7 +14,14 @@ class UIComponentsRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("UI控件相关"),
+        title: Text(
+          "UI控件相关",
+          style: TextStyle(
+              color: Colors.yellow.computeLuminance() < 0.5
+                  ? Colors.white
+                  : Colors.black),
+        ),
+        backgroundColor: Colors.yellow,
       ),
       body: SingleChildScrollView(
         child: Center(

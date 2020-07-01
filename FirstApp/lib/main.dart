@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'FunctionComponents/FunctionComponentsRoute.dart';
+import 'FunctionComponents/InheritedWidget/InheritedTestRoute.dart';
 import 'UIComponents/Arrange/ArrangeRoute.dart';
 import 'UIComponents/ClipRoute.dart';
 import 'UIComponents/Container/ContainerRoute.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
         "ListViewScrollRoute": (context) => ListViewScrollRoute(),
 
         "FunctionComponentsRoute": (context) => FunctionComponentsRoute(),
+        "InheritedTestRoute": (context) => InheritedTestRoute(),
       },
       onGenerateRoute: (RouteSettings settings) {
         print("做一些全局的路由跳转前置处理逻辑");

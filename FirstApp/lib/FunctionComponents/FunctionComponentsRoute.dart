@@ -51,9 +51,21 @@ class _State extends State<FunctionComponentsRoute> {
       onLongPress: () => setState(() => _operation = "LongPress"),
     );
 
+    RaisedButton inheritedWidget = RaisedButton(
+      child: Text("InheritedTestRoute"),
+      onPressed: () => Navigator.pushNamed(context, "InheritedTestRoute"),
+    );
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Function Components Route"),
+        title: Text(
+          "Function Components Route",
+          style: TextStyle(
+              color: Colors.red.computeLuminance() < 0.5
+                  ? Colors.white
+                  : Colors.black),
+        ),
+        backgroundColor: Colors.red,
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -61,6 +73,7 @@ class _State extends State<FunctionComponentsRoute> {
             children: <Widget>[
               touchListener,
               dector,
+              inheritedWidget,
             ],
           ),
         ),
