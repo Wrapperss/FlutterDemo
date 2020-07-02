@@ -56,6 +56,11 @@ class _State extends State<FunctionComponentsRoute> {
       onPressed: () => Navigator.pushNamed(context, "InheritedTestRoute"),
     );
 
+    RaisedButton futureBuilderTest = RaisedButton(
+      child: Text("Futrre Builder Test"),
+      onPressed: () => Navigator.pushNamed(context, "FutureBuilderTest"),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -74,6 +79,7 @@ class _State extends State<FunctionComponentsRoute> {
               touchListener,
               dector,
               inheritedWidget,
+              futureBuilderTest
             ],
           ),
         ),
