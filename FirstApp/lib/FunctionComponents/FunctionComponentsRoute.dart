@@ -58,7 +58,12 @@ class _State extends State<FunctionComponentsRoute> {
 
     RaisedButton futureBuilderTest = RaisedButton(
       child: Text("Futrre Builder Test"),
-      onPressed: () => Navigator.pushNamed(context, "FutureBuilderTest"),
+      onPressed: () => Navigator.pushNamed(context, "FutureStreamBuilderTest"),
+    );
+
+    RaisedButton diologRoute = RaisedButton(
+      child: Text("DialogRoute"),
+      onPressed: () => Navigator.pushNamed(context, "DialogRoute"),
     );
 
     return Scaffold(
@@ -79,7 +84,8 @@ class _State extends State<FunctionComponentsRoute> {
               touchListener,
               dector,
               inheritedWidget,
-              futureBuilderTest
+              futureBuilderTest,
+              diologRoute,
             ],
           ),
         ),
