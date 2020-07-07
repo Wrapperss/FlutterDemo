@@ -66,6 +66,11 @@ class _State extends State<FunctionComponentsRoute> {
       onPressed: () => Navigator.pushNamed(context, "DialogRoute"),
     );
 
+    RaisedButton animationButton = RaisedButton(
+      child: Text("Animation Route"),
+      onPressed: () => Navigator.pushNamed(context, "AnimationRoute"),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -86,6 +91,7 @@ class _State extends State<FunctionComponentsRoute> {
               inheritedWidget,
               futureBuilderTest,
               diologRoute,
+              animationButton,
             ],
           ),
         ),

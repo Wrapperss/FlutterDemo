@@ -6,6 +6,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'FunctionComponents/Animation/AnimationRoute.dart';
 import 'FunctionComponents/Dialog/DialogRoute.dart';
 import 'FunctionComponents/FunctionComponentsRoute.dart';
 import 'FunctionComponents/FutureStream/FutureStreamBuilderTest.dart';
@@ -59,6 +60,7 @@ class MyApp extends StatelessWidget {
         "InheritedTestRoute": (context) => InheritedTestRoute(),
         "FutureStreamBuilderTest": (context) => FutureStreamBuilderTest(),
         "DialogRoute": (context) => DialogRoute(),
+        "AnimationRoute": (context) => AnimationRoute(),
       },
       onGenerateRoute: (RouteSettings settings) {
         print("做一些全局的路由跳转前置处理逻辑");
