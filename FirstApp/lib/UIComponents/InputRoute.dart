@@ -24,6 +24,7 @@ class _InputRouteState extends State<InputRoute> {
 
   @override
   void initState() {
+    super.initState();
     _unameController.addListener(() {
       print(_unameController.text);
     });

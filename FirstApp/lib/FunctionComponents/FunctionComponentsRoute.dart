@@ -6,6 +6,8 @@
  */
 
 import 'package:flutter/material.dart';
+import 'PersonalComponents/CustomPaintRoute.dart';
+import 'PersonalComponents/GradientButton.dart';
 
 class FunctionComponentsRoute extends StatefulWidget {
   @override
@@ -92,6 +94,28 @@ class _State extends State<FunctionComponentsRoute> {
               futureBuilderTest,
               diologRoute,
               animationButton,
+              GradientButton(
+                colors: [Colors.orange, Colors.red],
+                height: 50.0,
+                child: Text("Submit"),
+              ),
+              GradientButton(
+                height: 50.0,
+                colors: [Colors.lightGreen, Colors.green[700]],
+                child: Text("Submit"),
+              ),
+              GradientButton(
+                height: 50.0,
+                colors: [Colors.lightBlue[300], Colors.blueAccent],
+                child: Text("Submit"),
+              ),
+              RaisedButton(
+                child: Text("五子棋"),
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CustomPaintRoute())),
+              )
             ],
           ),
         ),
