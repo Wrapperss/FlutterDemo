@@ -1,3 +1,10 @@
+/*
+ * @Author: Wrappers 
+ * @Date: 2020-07-10 11:37:02 
+ * @Last Modified by:   Wrappers 
+ * @Last Modified time: 2020-07-10 11:37:02 
+ */
+
 import 'package:flutter/material.dart';
 
 class InheritedTestRoute extends StatefulWidget {
@@ -44,7 +51,9 @@ class ShareDataWidget extends InheritedWidget {
   //定义一个便捷方法，方便子树中的widget获取共享数据
   static ShareDataWidget of(BuildContext context) {
     // return context.dependOnInheritedWidgetOfExactType<ShareDataWidget>();
-      return context.getElementForInheritedWidgetOfExactType<ShareDataWidget>().widget;
+    return context
+        .getElementForInheritedWidgetOfExactType<ShareDataWidget>()
+        .widget;
   }
 
   @override

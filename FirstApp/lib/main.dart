@@ -2,9 +2,10 @@
  * @Author: Wrappers 
  * @Date: 2020-06-29 15:55:21 
  * @Last Modified by: Wrappers
- * @Last Modified time: 2020-06-29 16:01:33
+ * @Last Modified time: 2020-07-10 16:36:12
  */
 
+import 'package:FirstApp/Widget/HttpTestRoute.dart';
 import 'package:flutter/material.dart';
 import 'FunctionComponents/Animation/AnimationRoute.dart';
 import 'FunctionComponents/Dialog/DialogRoute.dart';
@@ -24,6 +25,7 @@ import 'Route/EchoRoute.dart';
 import 'Route/NewRoute.dart';
 import 'UIComponents/UIComponentsRoute.dart';
 import 'Widget/CounterWidget.dart';
+import 'Widget/FileOperationRoute.dart';
 
 void main() {
   runApp(MyApp());
@@ -88,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
     RaisedButton uiButton = RaisedButton(
       child: Text(
         "UI Components Route",
-        style: TextStyle(color: Colors.red, fontSize: 20),
+        style: TextStyle(color: Colors.white, fontSize: 20),
       ),
       color: Colors.yellow,
       clipBehavior: Clip.antiAlias,
@@ -98,14 +100,38 @@ class _MyHomePageState extends State<MyHomePage> {
     RaisedButton functionButton = RaisedButton(
       child: Text(
         "Function Components Route",
-        style: TextStyle(color: Colors.blue, fontSize: 20),
+        style: TextStyle(color: Colors.white, fontSize: 20),
       ),
       color: Colors.red,
       clipBehavior: Clip.antiAlias,
       onPressed: () => Navigator.pushNamed(context, "FunctionComponentsRoute"),
     );
 
+    RaisedButton fileButton = RaisedButton(
+      child: Text(
+        "File Operation",
+        style: TextStyle(color: Colors.white, fontSize: 20),
+      ),
+      color: Colors.green,
+      onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => FileOperationRoute(),
+          )),
+    );
+
+    RaisedButton httpClientButton = RaisedButton(
+      child: Text("Http Test Route"),
+      color: Colors.amber,
+      onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HttpTestRoute(),
+          )),
+    );
+
     return Scaffold(
+      backgroundColor: Colors.black12,
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -114,7 +140,12 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[uiButton, functionButton],
+            children: <Widget>[
+              uiButton,
+              functionButton,
+              fileButton,
+              httpClientButton,
+            ],
           ),
         ),
       ),
