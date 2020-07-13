@@ -2,7 +2,7 @@
  * @Author: Wrappers 
  * @Date: 2020-06-29 15:55:21 
  * @Last Modified by: Wrappers
- * @Last Modified time: 2020-07-10 16:36:12
+ * @Last Modified time: 2020-07-13 15:28:49
  */
 
 import 'package:FirstApp/Widget/HttpTestRoute.dart';
@@ -26,6 +26,8 @@ import 'Route/NewRoute.dart';
 import 'UIComponents/UIComponentsRoute.dart';
 import 'Widget/CounterWidget.dart';
 import 'Widget/FileOperationRoute.dart';
+import 'Widget/DioTestRoute.dart';
+import 'Widget/WebSocketRoute.dart';
 
 void main() {
   runApp(MyApp());
@@ -130,6 +132,26 @@ class _MyHomePageState extends State<MyHomePage> {
           )),
     );
 
+    RaisedButton dioTestButton = RaisedButton(
+      child: Text("DioTestButton"),
+      color: Colors.cyan,
+      onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DioTestRoute(),
+          )),
+    );
+
+    RaisedButton webSocketButton = RaisedButton(
+      child: Text("WebSocketRoute"),
+      color: Colors.amber,
+      onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => WebSocketRoute(),
+          )),
+    );
+
     return Scaffold(
       backgroundColor: Colors.black12,
       appBar: AppBar(
@@ -145,6 +167,8 @@ class _MyHomePageState extends State<MyHomePage> {
               functionButton,
               fileButton,
               httpClientButton,
+              dioTestButton,
+              webSocketButton,
             ],
           ),
         ),
