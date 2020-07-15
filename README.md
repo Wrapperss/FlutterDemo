@@ -17,7 +17,7 @@ Widget build(BuildContext context) {}
 ```
 BuildContext就是widget对应的Element，所以我们可以通过context在StatelessWidget和StatefulWidget的build方法中直接访问Element对象。我们获取主题数据的代码Theme.of(context)内部正是调用了Element的dependOnInheritedWidgetOfExactType()方法。
 
-1. 如果没有widget层，单靠`Element`层是否可以搭建起一个可用的UI框架？如果可以应该是什么样子？
+1. 如果没有widget层，单靠`Element`层是否可以搭建起一个可用的UI框架？如果可以应该是什么样子？  
 答案当然是肯定的，因为我们之前说过widget树只是`Element`树的映射，我们完全可以直接通过Element来搭建一个UI框架。
-2. Flutter UI框架能不做成响应式吗？
+2. Flutter UI框架能不做成响应式吗？  
 答案当然也是肯定的，Flutter engine提供的dart API是原始且独立的，这个与操作系统提供的API类似，上层UI框架设计成什么样完全取决于设计者，完全可以将UI框架设计成Android风格或iOS风格，但这些事Google不会再去做，我们也没必要再去搞这一套，这是因为响应式的思想本身是很棒的。
